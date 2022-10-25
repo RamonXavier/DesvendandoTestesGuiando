@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace DesvendandoTestesGuiando.Controllers
+namespace DesvendandoTestes.Controllers
 {
     [ApiController]
     [Route("[controller]")]

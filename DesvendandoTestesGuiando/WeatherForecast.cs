@@ -1,4 +1,4 @@
-namespace DesvendandoTestesGuiando
+namespace DesvendandoTestes
 {
     public class WeatherForecast
     {
