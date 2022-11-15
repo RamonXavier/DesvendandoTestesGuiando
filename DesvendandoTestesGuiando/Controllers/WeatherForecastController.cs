@@ -16,7 +16,7 @@ namespace DesvendandoTestes.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> BuscarTodos()
+        public IActionResult BuscarTodos()
         {
             try
             {
@@ -30,7 +30,7 @@ namespace DesvendandoTestes.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> BuscarTemperaturaMaisAlta()
+        public IActionResult BuscarTemperaturaMaisAlta()
         {
             try
             {
@@ -44,7 +44,7 @@ namespace DesvendandoTestes.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> BuscarTemperaturaMaisBaixa()
+        public IActionResult BuscarTemperaturaMaisBaixa()
         {
             try
             {
@@ -58,7 +58,7 @@ namespace DesvendandoTestes.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Adicionar(AdicionarWeatherForecastDto adicionarWeatherForecastDto)
+        public IActionResult Adicionar(AdicionarWeatherForecastDto adicionarWeatherForecastDto)
         {
             try
             {
