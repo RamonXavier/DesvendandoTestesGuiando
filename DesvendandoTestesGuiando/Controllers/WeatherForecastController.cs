@@ -1,3 +1,5 @@
+using DesvendandoTestes.Service.Dto.WeatherForecast;
+using DesvendandoTestes.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DesvendandoTestes.Controllers
@@ -6,29 +8,67 @@ namespace DesvendandoTestes.Controllers
     [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Ho444t", "Sweltering", "Scorching"
-        };
+        private readonly IWeatherForecastService _weatherForecastService;
 
-        public WeatherForecastController()
+        public WeatherForecastController(IWeatherForecastService weatherForecastService)
         {
+            _weatherForecastService = weatherForecastService;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public WeatherForecast GetFreezing()
+        [HttpGet]
+        public async Task<IActionResult> BuscarTodos()
         {
-            var retorno = new WeatherForecast
+            try
             {
-                Date = null,
-                TemperatureC = 35,
-                Summary = "Freezing"
-            };
+                var weatherForecasts = _weatherForecastService.BuscarTodos();
+                return Ok(weatherForecasts);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
+        }
 
-            if (retorno.Summary.Length < 4)
-                return null;
+        [HttpGet]
+        public async Task<IActionResult> BuscarTemperaturaMaisAlta()
+        {
+            try
+            {
+                var weatherForecast = _weatherForecastService.BuscarTemperaturaMaisAlta();
+                return Ok(weatherForecast);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
+        }
 
-            return retorno;
+        [HttpGet]
+        public async Task<IActionResult> BuscarTemperaturaMaisBaixa()
+        {
+            try
+            {
+                var weatherForecast = _weatherForecastService.BuscarTemperaturaMaisBaixa();
+                return Ok(weatherForecast);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Adicionar(AdicionarWeatherForecastDto adicionarWeatherForecastDto)
+        {
+            try
+            {
+                _weatherForecastService.Adicionar(adicionarWeatherForecastDto);
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
         }
     }
 }
