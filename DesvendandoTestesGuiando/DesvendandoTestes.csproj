@@ -15,4 +15,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DesvendandoTestes.Domain\DesvendandoTestes.Domain.csproj" />
+    <ProjectReference Include="..\DesvendandoTestes.Service\DesvendandoTestes.Service.csproj" />
+  </ItemGroup>
+
 </Project>
